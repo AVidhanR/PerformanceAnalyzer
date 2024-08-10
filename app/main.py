@@ -80,3 +80,13 @@ def display_results(model_name, y_prediction):
     st.write(f"The recall score achieved using {model_name} is: {recall} %")
     st.write(" ")
     return accuracy, precision, recall
+
+"""
+Now let's build the models and display the results for each model using the function defined above.
+"""
+
+# Naive Bayes
+nb = GaussianNB()
+nb.fit(X_train, Y_train)
+Y_pred_nb = nb.predict(X_test)
+accuracy_nb, precision_nb, recall_nb = display_results("Naive Bayes", Y_pred_nb)
