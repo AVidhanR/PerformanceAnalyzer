@@ -25,10 +25,10 @@ warnings.filterwarnings('ignore')
 
 # project setup
 st.set_page_config(
-    page_title="Performance Analyzer",   # Your desired title
-    page_icon=":bar_chart:",          # Optional: Add an emoji as a favicon
-    layout="wide",                # Optional: Use the wide layout
-    initial_sidebar_state="expanded" # Optional: Set sidebar state
+    page_title="Performance Analyzer",
+    page_icon=":bar_chart:",
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 # Changed the font style to Open Sans
@@ -63,29 +63,34 @@ else:
     st.stop()
 
 # display basic information about the dataset
-st.subheader("Dataset Information")
-st.write(dataset.head())
-st.write(dataset.describe())
+col1, col2, col3 = st.columns([1, 7, 1], vertical_alignment="center")
+with col2:
+    st.subheader("Dataset Information")
+    st.write(dataset.head())
+    st.write(dataset.describe())
+    st.write(dataset)
+    # Display dataset info
+    buffer = io.StringIO()
+    dataset.info(buf=buffer)
+    s = buffer.getvalue()
+    st.text(s)
 
-# Display dataset info
-buffer = io.StringIO()
-dataset.info(buf=buffer)
-s = buffer.getvalue()
-st.text(s)
+
+
 
 # Target distribution
-st.subheader("Target Distribution")
-fig, ax = plt.subplots()
-sns.countplot(x="target", data=dataset, ax=ax)
-st.pyplot(fig)
+# st.subheader("Target Distribution")
+# fig, ax = plt.subplots()
+# sns.countplot(x=dataset["target"], data=dataset, ax=ax)
+# st.pyplot(fig)
 
-# Bar plots for categorical features
-st.subheader("Categorical Features vs Target")
-categorical_features = ["sex", "cp", "fbs", "restecg", "exang", "slope", "ca", "thal"]
-for feature in categorical_features:
-    fig, ax = plt.subplots()
-    sns.barplot(x=feature, y="target", data=dataset, ax=ax)
-    st.pyplot(fig)
+# # Bar plots for categorical features
+# st.subheader("Categorical Features vs Target")
+# categorical_features = ["sex", "cp", "fbs", "restecg", "exang", "slope", "ca", "thal"]
+# for feature in categorical_features:
+#     fig, ax = plt.subplots()
+#     sns.barplot(x=feature, y=dataset["target"], data=dataset, ax=ax)
+#     st.pyplot(fig)
 
 # Split dataset
 predictors = dataset.drop("target", axis=1)
@@ -99,6 +104,10 @@ def display_results(model_name, y_prediction):
     accuracy = round(accuracy_score(Y_test, y_prediction) * 100, 2)
     precision = round(precision_score(Y_test, y_prediction) * 100, 2)
     recall = round(recall_score(Y_test, y_prediction) * 100, 2)
+
+    # --- Display the Confusion Matrix ---
+    st.subheader("Confusion Matrix:")
+    st.write(cm)
 
     st.header(f"{model_name}")
     st.write(f"The accuracy score achieved using {model_name} is: {accuracy} %")
