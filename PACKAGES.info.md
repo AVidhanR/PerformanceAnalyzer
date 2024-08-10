@@ -32,15 +32,14 @@
 - matplotlib.pyplot is a collection of command style functions that make matplotlib work like MATLAB.
 - Read the documentation from [here](https://matplotlib.org/stable/api/pyplot_summary.html#module-matplotlib.pyplot).
 
-## `io`
+### `io`
 
 - The io module provides Python’s main facilities for dealing with various types of I/O.
 - There are three main types of I/O: text I/O, binary I/O, and raw I/O.
 - Read the documentation from [here](https://docs.python.org/3/library/io.html#io.StringIO).
 
-## `warnings`
+### `warnings`
 
 - The warnings module is used to handle warnings in Python.
 - Warning messages are typically issued in situations where it is useful to alert the user of some condition in a program, where that condition (normally) doesn’t warrant raising an exception and terminating the program.
 - Read the documentation from [here](https://docs.python.org/3/library/warnings.html#warnings.filterwarnings).
-
