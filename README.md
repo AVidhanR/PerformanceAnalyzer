@@ -14,12 +14,12 @@
 
 ### To run this project locally
 - Make sure to have a `python interpreter` with version **`3.12`**
-- After cloning the repo or by opening via the github codespaces run the below command
+- After `cloning the repo` by git\/github desktop open the repected `IDE`
 ```bash
 pip install -r requirements.txt
 ```
-- By clicking enter after entering the above command hit enter, which installs `streamlit` `seaborn` `pandas` `matplotlib` `scikit-learn` with mentioned versions.
-- In order run the web app, type in the below command
+- After entering the above command hit enter, which then installs `streamlit` `seaborn` `pandas` `matplotlib` `scikit-learn` with appropriate versions as mentioned in the `requirements.txt`
+- In order to run the web app,
 ```bash
 streamlit run app/main.py
 ```
