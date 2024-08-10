@@ -86,3 +86,8 @@ Now let's build the models and display the results for each model using the func
 """
 
 # Naive Bayes
+nb = GaussianNB()
+nb.fit(X_train, Y_train)
+Y_prediction_nb = nb.predict(X_test)
+accuracy_nb, precision_nb, recall_nb = display_results("Naive Bayes", Y_prediction_nb)
+
