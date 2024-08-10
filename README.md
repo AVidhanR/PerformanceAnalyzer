@@ -24,4 +24,4 @@ pip install -r requirements.txt
 streamlit run app/main.py
 ```
 - It might automatically open the web app directly on to your default browser or open the `localhost` by typing as `localhost:8501`
-- That's it for to run the web app, In order to get the analysis part upload the `University of California, Irvine (UCI) Machine Repository - heart disease dataset` 
+- In order to get the analysis part, upload the `University of California, Irvine (UCI) Machine Repository - heart disease` dataset by downloading it. 
