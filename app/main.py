@@ -23,11 +23,35 @@ from sklearn.linear_model import LogisticRegression
 # ignore warnings
 warnings.filterwarnings('ignore')
 
-title = "performance analysis for heart disease prediction"
+# project setup
+st.set_page_config(
+    page_title="Performance Analyzer",   # Your desired title
+    page_icon=":bar_chart:",          # Optional: Add an emoji as a favicon
+    layout="wide",                # Optional: Use the wide layout
+    initial_sidebar_state="expanded" # Optional: Set sidebar state
+)
+
+# Changed the font style to Open Sans
+st.markdown(
+    """
+    <style>
+    /* Import Open Sans font */
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&display=swap');
+    
+     body {
+        font-family: 'Open Sans';
+     } 
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# title of the project
+title_of_the_project = "performance analysis for heart disease prediction"
 
 # set the title of the web app
-st.title(title.capitalize())
-st.sidebar.title(title.capitalize())
+st.title(title_of_the_project.title())
+st.sidebar.title(title_of_the_project.title())
 st.sidebar.subheader("Settings")
 
 # upload the dataset
