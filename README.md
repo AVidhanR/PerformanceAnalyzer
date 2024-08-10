@@ -1,1 +1,1 @@
-## Performance Analysis For Heart Disease Predicction
+## Performance Analysis For Heart Disease Prediction
