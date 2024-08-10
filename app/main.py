@@ -85,19 +85,19 @@ def display_results(model_name, y_prediction):
 Now let's build the models and display the results for each model using the function defined above.
 """
 
-# Naive Bayes
+# Naive Bayes Classifier (NB) - Gaussian Naive Bayes Classifier (GaussianNB)
 nb = GaussianNB()
 nb.fit(X_train, Y_train)
 Y_prediction_nb = nb.predict(X_test)
 accuracy_nb, precision_nb, recall_nb = display_results("Naive Bayes", Y_prediction_nb)
 
-# K-Nearest Neighbors
+# K-Nearest Neighbors (KNN) Classifier with k=7 (default)
 knn = KNeighborsClassifier(n_neighbors=7)
 knn.fit(X_train, Y_train)
 Y_prediction_knn = knn.predict(X_test)
 accuracy_knn, precision_knn, recall_knn = display_results("K-Nearest Neighbors", Y_prediction_knn)
 
-# Support Vector Machine
+# Support Vector Machine (SVM) Classifier with linear kernel (default)
 svm_model = svm.SVC(kernel='linear')
 svm_model.fit(X_train, Y_train)
 Y_prediction_svm = svm_model.predict(X_test)
