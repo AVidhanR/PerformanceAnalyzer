@@ -67,6 +67,7 @@ predictors = dataset.drop("target", axis=1)
 target = dataset["target"]
 X_train, X_test, Y_train, Y_test = train_test_split(predictors, target, test_size=0.20, random_state=0)
 
+
 # Define function to display results
 def display_results(model_name, y_prediction):
     cm = confusion_matrix(Y_test, y_prediction)
@@ -80,6 +81,7 @@ def display_results(model_name, y_prediction):
     st.write(f"The recall score achieved using {model_name} is: {recall} %")
     st.write(" ")
     return accuracy, precision, recall
+
 
 """
 Now let's build the models and display the results for each model using the function defined above.
