@@ -23,9 +23,11 @@ from sklearn.linear_model import LogisticRegression
 # ignore warnings
 warnings.filterwarnings('ignore')
 
+title = "performance analysis for heart disease prediction"
+
 # set the title of the web app
-st.title("Heart Disease Classification")
-st.sidebar.title("Heart Disease Classification")
+st.title(title.capitalize())
+st.sidebar.title(title.capitalize())
 st.sidebar.subheader("Settings")
 
 # upload the dataset
