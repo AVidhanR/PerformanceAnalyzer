@@ -68,11 +68,11 @@ target = dataset["target"]
 X_train, X_test, Y_train, Y_test = train_test_split(predictors, target, test_size=0.20, random_state=0)
 
 # Define function to display results
-def display_results(model_name, y_pred):
-    cm = confusion_matrix(Y_test, y_pred)
-    accuracy = round(accuracy_score(Y_test, y_pred) * 100, 2)
-    precision = round(precision_score(Y_test, y_pred) * 100, 2)
-    recall = round(recall_score(Y_test, y_pred) * 100, 2)
+def display_results(model_name, y_prediction):
+    cm = confusion_matrix(Y_test, y_prediction)
+    accuracy = round(accuracy_score(Y_test, y_prediction) * 100, 2)
+    precision = round(precision_score(Y_test, y_prediction) * 100, 2)
+    recall = round(recall_score(Y_test, y_prediction) * 100, 2)
 
     st.header(f"{model_name}")
     st.write(f"The accuracy score achieved using {model_name} is: {accuracy} %")
