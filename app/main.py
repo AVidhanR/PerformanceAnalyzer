@@ -48,3 +48,16 @@ dataset.info(buf=buffer)
 s = buffer.getvalue()
 st.text(s)
 
+# Target distribution
+st.subheader("Target Distribution")
+fig, ax = plt.subplots()
+sns.countplot(x="target", data=dataset, ax=ax)
+st.pyplot(fig)
+
+# Bar plots for categorical features
+st.subheader("Categorical Features vs Target")
+categorical_features = ["sex", "cp", "fbs", "restecg", "exang", "slope", "ca", "thal"]
+for feature in categorical_features:
+    fig, ax = plt.subplots()
+    sns.barplot(x=feature, y="target", data=dataset, ax=ax)
+    st.pyplot(fig)
