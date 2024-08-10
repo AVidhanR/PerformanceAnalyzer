@@ -21,3 +21,30 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 
+# ignore warnings
+warnings.filterwarnings('ignore')
+
+# set the title of the web app
+st.title("Heart Disease Classification")
+st.sidebar.title("Heart Disease Classification")
+st.sidebar.subheader("Settings")
+
+# upload the dataset
+uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
+if uploaded_file is not None:
+    dataset = pd.read_csv(uploaded_file)
+else:
+    st.error("Please upload a CSV file.")
+    st.stop()
+
+# display basic information about the dataset
+st.subheader("Dataset Information")
+st.write(dataset.head())
+st.write(dataset.describe())
+
+# Display dataset info
+buffer = io.StringIO()
+dataset.info(buf=buffer)
+s = buffer.getvalue()
+st.text(s)
+
