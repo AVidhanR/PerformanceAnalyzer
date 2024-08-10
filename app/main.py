@@ -94,5 +94,11 @@ accuracy_nb, precision_nb, recall_nb = display_results("Naive Bayes", Y_predicti
 # K-Nearest Neighbors
 knn = KNeighborsClassifier(n_neighbors=7)
 knn.fit(X_train, Y_train)
-Y_pred_knn = knn.predict(X_test)
-accuracy_knn, precision_knn, recall_knn = display_results("K-Nearest Neighbors", Y_pred_knn)
+Y_prediction_knn = knn.predict(X_test)
+accuracy_knn, precision_knn, recall_knn = display_results("K-Nearest Neighbors", Y_prediction_knn)
+
+# Support Vector Machine
+svm_model = svm.SVC(kernel='linear')
+svm_model.fit(X_train, Y_train)
+Y_prediction_svm = svm_model.predict(X_test)
+accuracy_svm, precision_svm, recall_svm = display_results("Support Vector Machine", Y_prediction_svm)
