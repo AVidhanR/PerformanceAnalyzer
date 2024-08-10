@@ -61,3 +61,8 @@ for feature in categorical_features:
     fig, ax = plt.subplots()
     sns.barplot(x=feature, y="target", data=dataset, ax=ax)
     st.pyplot(fig)
+
+# Split dataset
+predictors = dataset.drop("target", axis=1)
+target = dataset["target"]
+X_train, X_test, Y_train, Y_test = train_test_split(predictors, target, test_size=0.20, random_state=0)
