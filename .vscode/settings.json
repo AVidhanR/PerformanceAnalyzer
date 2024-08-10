@@ -7,6 +7,7 @@
     "scikit",
     "seaborn",
     "sklearn",
-    "streamlit"
+    "streamlit",
+    "googleapis"
   ]
 }
