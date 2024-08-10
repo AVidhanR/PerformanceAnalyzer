@@ -91,3 +91,8 @@ nb.fit(X_train, Y_train)
 Y_prediction_nb = nb.predict(X_test)
 accuracy_nb, precision_nb, recall_nb = display_results("Naive Bayes", Y_prediction_nb)
 
+# K-Nearest Neighbors
+knn = KNeighborsClassifier(n_neighbors=7)
+knn.fit(X_train, Y_train)
+Y_pred_knn = knn.predict(X_test)
+accuracy_knn, precision_knn, recall_knn = display_results("K-Nearest Neighbors", Y_pred_knn)
