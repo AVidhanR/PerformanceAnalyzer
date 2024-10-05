@@ -66,16 +66,23 @@ else:
 col1, col2, col3 = st.columns([1, 7, 1], vertical_alignment="center")
 with col2:
     st.subheader("Dataset Information")
+
+    st.write("Dataset head:")
     st.write(dataset.head())
+
+    st.write("Dataset description:")
     st.write(dataset.describe())
+
+    st.write("The complete data provided by the dataset:")
     st.write(dataset)
+
     # Display dataset info
     buffer = io.StringIO()
     dataset.info(buf=buffer)
     s = buffer.getvalue()
+    
+    st.write("Dataset attributes with it's data type and memory usages:")
     st.text(s)
-
-
 
 
 # Target distribution
@@ -97,29 +104,33 @@ predictors = dataset.drop("target", axis=1)
 target = dataset["target"]
 X_train, X_test, Y_train, Y_test = train_test_split(predictors, target, test_size=0.20, random_state=0)
 
+st.markdown("""<hr style="margin: 0rem;" />""", unsafe_allow_html=True)
 
 # Define function to display results
 def display_results(model_name, y_prediction):
+    st.header(model_name)
     cm = confusion_matrix(Y_test, y_prediction)
     accuracy = round(accuracy_score(Y_test, y_prediction) * 100, 2)
     precision = round(precision_score(Y_test, y_prediction) * 100, 2)
     recall = round(recall_score(Y_test, y_prediction) * 100, 2)
 
     # --- Display the Confusion Matrix ---
-    st.subheader("Confusion Matrix:")
+    st.subheader("Confusion Matrix")
     st.write(cm)
 
-    st.header(f"{model_name}")
+    st.subheader("The required results,")
     st.write(f"The accuracy score achieved using {model_name} is: {accuracy} %")
     st.write(f"The precision score achieved using {model_name} is: {precision} %")
     st.write(f"The recall score achieved using {model_name} is: {recall} %")
     st.write(" ")
+    st.markdown("""<hr style="margin: 0rem;" />""", unsafe_allow_html=True)
+
     return accuracy, precision, recall
 
 
-"""
-Now let's build the models and display the results for each model using the function defined above.
-"""
+
+# Now let's build the models and display the results for each model using the # function defined above.
+
 
 # Naive Bayes Classifier (NB) - Gaussian Naive Bayes Classifier (GaussianNB)
 nb = GaussianNB()
