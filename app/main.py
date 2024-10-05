@@ -80,7 +80,7 @@ with col2:
     buffer = io.StringIO()
     dataset.info(buf=buffer)
     s = buffer.getvalue()
-    
+
     st.write("Dataset attributes with it's data type and memory usages:")
     st.text(s)
 
@@ -118,7 +118,7 @@ def display_results(model_name, y_prediction):
     st.subheader("Confusion Matrix")
     st.write(cm)
 
-    st.subheader("The required results,")
+    st.subheader("The acquired results,")
     st.write(f"The accuracy score achieved using {model_name} is: {accuracy} %")
     st.write(f"The precision score achieved using {model_name} is: {precision} %")
     st.write(f"The recall score achieved using {model_name} is: {recall} %")
