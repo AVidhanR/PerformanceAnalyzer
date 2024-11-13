@@ -2,12 +2,13 @@
   "cSpell.words": [
     "barplot",
     "countplot",
+    "dataframe",
+    "googleapis",
     "matplotlib",
     "pyplot",
     "scikit",
     "seaborn",
     "sklearn",
-    "streamlit",
-    "googleapis"
+    "streamlit"
   ]
 }
