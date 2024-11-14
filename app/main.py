@@ -42,13 +42,6 @@ def display_results(model_name, y_prediction):
     """)
     return accuracy, precision, recall
 
-st.set_page_config(
-    page_title="Performance Analyzer",
-    page_icon=":bar_chart:",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
 st.markdown(
     """
     <style>
