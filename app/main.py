@@ -8,7 +8,7 @@ import seaborn as sns
 
 # classification packages from scikit-learn ~ sklearn
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
 from sklearn.naive_bayes import GaussianNB
 from sklearn import svm
 from sklearn.neighbors import KNeighborsClassifier
@@ -21,7 +21,27 @@ from sklearn.linear_model import LogisticRegression
 
 warnings.filterwarnings('ignore')
 
-# project setup
+def display_results(model_name, y_prediction):
+    st.subheader(model_name)
+    cm = confusion_matrix(Y_test, y_prediction)
+    accuracy = round(accuracy_score(Y_test, y_prediction) * 100, 2)
+    precision = round(precision_score(Y_test, y_prediction) * 100, 2)
+    recall = round(recall_score(Y_test, y_prediction) * 100, 2)
+    f1 = round(f1_score(Y_test, y_prediction, average='weighted') * 100, 2)
+
+    st.write("Confusion Matrix: ")
+    st.write(cm)
+
+    st.write(f"""
+    The acquired results are,
+    - The accuracy score achieved using {model_name} is: **{accuracy}%**
+    - The precision score achieved using {model_name} is: **{precision}%**
+    - The recall score achieved using {model_name} is: **{recall}%**
+    - The F1-Score achieved using {model_name} is: **{f1}%**
+    ----
+    """)
+    return accuracy, precision, recall
+
 st.set_page_config(
     page_title="Performance Analyzer",
     page_icon=":bar_chart:",
@@ -29,7 +49,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Changed the font style to Open Sans
 st.markdown(
     """
     <style>
@@ -41,28 +60,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-def display_results(model_name, y_prediction):
-    st.subheader(model_name)
-    cm = confusion_matrix(Y_test, y_prediction)
-    accuracy = round(accuracy_score(Y_test, y_prediction) * 100, 2)
-    precision = round(precision_score(Y_test, y_prediction) * 100, 2)
-    recall = round(recall_score(Y_test, y_prediction) * 100, 2)
-
-    st.write(cm)
-
-    st.write(f"""
-    ##### The acquired results are,
-    - The accuracy score achieved using {model_name} is: **{accuracy}%**
-    - The precision score achieved using {model_name} is: **{precision}%**
-    - The recall score achieved using {model_name} is: **{recall}%**
-    ----
-    """)
-    return accuracy, precision, recall
-
-# title of the project
 title_of_the_project = "performance analysis for heart disease prediction"
 
-# set the title of the web app
 st.title(title_of_the_project.title())
 st.sidebar.title(title_of_the_project.title())
 st.sidebar.subheader("Settings")
@@ -76,7 +75,7 @@ else:
     st.stop()
 
 # display basic information about the dataset
-col1, col2, col3 = st.columns([1, 7, 1], vertical_alignment="center")
+col1, col2, col3 = st.columns([.5, 7.5, .5], vertical_alignment="center")
 with col2:
     st.subheader("Dataset Information")
 
@@ -96,13 +95,12 @@ with col2:
 
     st.write("Dataset attributes with it's data type and memory usages:")
     st.text(s)
-
-
-# Target distribution
-st.subheader("Target Distribution")
-fig, ax = plt.subplots()
-sns.countplot(x=dataset["cardio"], data=dataset, ax=ax)
-st.pyplot(fig)
+       
+    # Target distribution
+    st.subheader("Target Distribution")
+    fig, ax = plt.subplots()
+    sns.countplot(x=dataset["cardio"], data=dataset, ax=ax)
+    st.pyplot(fig)
 
 # # # Bar plots for categorical features - need to figure out here.
 # # st.subheader("Categorical Features vs cardio")
@@ -128,19 +126,19 @@ knn.fit(X_train, Y_train)
 Y_prediction_knn = knn.predict(X_test)
 accuracy_knn, precision_knn, recall_knn = display_results("K-Nearest Neighbors", Y_prediction_knn)
 
-# This is too much for the streamlit app to handle ----------------
+# Support Vector Machines - Linear
 svm_model = svm.LinearSVC()
 svm_model.fit(X_train, Y_train)
 Y_prediction_svm = svm_model.predict(X_test)
 accuracy_svm, precision_svm, recall_svm = display_results("Support Vector Machine", Y_prediction_svm)
-# ------------------------------------------------------------------
 
+# Neural Networks - MLP
 mlp = MLPClassifier(hidden_layer_sizes=(100,), max_iter=1000)
 mlp.fit(X_train, Y_train)
 Y_pred_mlp = mlp.predict(X_test)
 accuracy_mlp, precision_mlp, recall_mlp = display_results("Multilayer Perceptron (Neural Networks)", Y_pred_mlp)
 
-# Gradient Boosting
+# Gradient Boosting - the best for now
 gb = GradientBoostingClassifier()
 gb.fit(X_train, Y_train)
 Y_pred_gb = gb.predict(X_test)
