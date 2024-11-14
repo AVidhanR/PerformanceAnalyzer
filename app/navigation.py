@@ -1,5 +1,7 @@
 import streamlit as st # type: ignore
 
+# This the required page for the navigation
+
 st.set_page_config(page_icon=":bar_chart:")
 
 st.markdown(
@@ -15,9 +17,9 @@ st.markdown(
 
 st.navigation({
     "Home": [
-        st.Page("main.py", title="Performance Analyzer"),
+        st.Page("pages/main.py", title="Performance Analyzer"),
     ],
-    "About": [
-        st.Page("about.py", title="About us"),
+    "Resources": [
+        st.Page("pages/about.py", title="Learn About us"),
     ],
 }).run()
