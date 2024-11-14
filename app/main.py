@@ -13,12 +13,12 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn import svm
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
-# from sklearn.ensemble import RandomForestClassifier
-# from sklearn.tree import DecisionTreeClassifier
-# from sklearn.ensemble import GradientBoostingClassifier
-# from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression
 
-# ignore warnings
+
 warnings.filterwarnings('ignore')
 
 # project setup
@@ -33,16 +33,31 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* Import Open Sans font */
-    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&display=swap');
-
-     body {
-        font-family: 'Open Sans';
+     body, p, h1, h2, h3, h4, h5, li, ul, ol{
+        font-family: 'Cascadia Code';
      }
     </style>
     """,
     unsafe_allow_html=True,
 )
+
+def display_results(model_name, y_prediction):
+    st.subheader(model_name)
+    cm = confusion_matrix(Y_test, y_prediction)
+    accuracy = round(accuracy_score(Y_test, y_prediction) * 100, 2)
+    precision = round(precision_score(Y_test, y_prediction) * 100, 2)
+    recall = round(recall_score(Y_test, y_prediction) * 100, 2)
+
+    st.write(cm)
+
+    st.write(f"""
+    ##### The acquired results are,
+    - The accuracy score achieved using {model_name} is: **{accuracy}%**
+    - The precision score achieved using {model_name} is: **{precision}%**
+    - The recall score achieved using {model_name} is: **{recall}%**
+    ----
+    """)
+    return accuracy, precision, recall
 
 # title of the project
 title_of_the_project = "performance analysis for heart disease prediction"
@@ -102,48 +117,49 @@ predictors = dataset.drop("cardio", axis=1)
 target = dataset["cardio"]
 X_train, X_test, Y_train, Y_test = train_test_split(predictors, target, test_size=0.20, random_state=0)
 
-st.markdown("""<hr style="margin: 0rem;" />""", unsafe_allow_html=True)
-
-# Define function to display results
-def display_results(model_name, y_prediction):
-    st.header(model_name)
-    cm = confusion_matrix(Y_test, y_prediction)
-    accuracy = round(accuracy_score(Y_test, y_prediction) * 100, 2)
-    precision = round(precision_score(Y_test, y_prediction) * 100, 2)
-    recall = round(recall_score(Y_test, y_prediction) * 100, 2)
-
-    # --- Display the Confusion Matrix ---
-    st.subheader("Confusion Matrix")
-    st.write(cm)
-
-    st.subheader("The acquired results,")
-    st.write(f"The accuracy score achieved using {model_name} is: {accuracy} %")
-    st.write(f"The precision score achieved using {model_name} is: {precision} %")
-    st.write(f"The recall score achieved using {model_name} is: {recall} %")
-    st.write(" ")
-    st.markdown("""<hr style="margin: 0rem;" />""", unsafe_allow_html=True)
-
-    return accuracy, precision, recall
-
 nb = GaussianNB()
 nb.fit(X_train, Y_train)
 Y_prediction_nb = nb.predict(X_test)
 accuracy_nb, precision_nb, recall_nb = display_results("Naive Bayes", Y_prediction_nb)
 
 # K-Nearest Neighbors (KNN) Classifier with k=7 (default)
-knn = KNeighborsClassifier(n_neighbors=7)
+knn = KNeighborsClassifier(n_neighbors=10)
 knn.fit(X_train, Y_train)
 Y_prediction_knn = knn.predict(X_test)
 accuracy_knn, precision_knn, recall_knn = display_results("K-Nearest Neighbors", Y_prediction_knn)
 
 # This is too much for the streamlit app to handle ----------------
-# svm_model = svm.SVC(kernel="linear")
-# svm_model.fit(X_train, Y_train)
-# Y_prediction_svm = svm_model.predict(X_test)
-# accuracy_svm, precision_svm, recall_svm = display_results("Support Vector Machine", Y_prediction_svm)
+svm_model = svm.LinearSVC()
+svm_model.fit(X_train, Y_train)
+Y_prediction_svm = svm_model.predict(X_test)
+accuracy_svm, precision_svm, recall_svm = display_results("Support Vector Machine", Y_prediction_svm)
 # ------------------------------------------------------------------
 
 mlp = MLPClassifier(hidden_layer_sizes=(100,), max_iter=1000)
 mlp.fit(X_train, Y_train)
 Y_pred_mlp = mlp.predict(X_test)
-accuracy_mlp, precision_mlp, recall_mlp = display_results("Multilayer Perceptron", Y_pred_mlp)
+accuracy_mlp, precision_mlp, recall_mlp = display_results("Multilayer Perceptron (Neural Networks)", Y_pred_mlp)
+
+# Gradient Boosting
+gb = GradientBoostingClassifier()
+gb.fit(X_train, Y_train)
+Y_pred_gb = gb.predict(X_test)
+accuracy_gb, precision_gb, recall_gb = display_results("Gradient Boosting", Y_pred_gb)
+
+# Random Forest - n_estimators = 600 and random_state = 42 - default_since
+rf = RandomForestClassifier(n_estimators=400, random_state=32)
+rf.fit(X_train, Y_train)
+Y_pred_rf = rf.predict(X_test)
+accuracy_rf, precision_rf, recall_rf = display_results("Random Forest", Y_pred_rf)
+
+# Decision Tree
+dt = DecisionTreeClassifier()
+dt.fit(X_train, Y_train)
+Y_pred_dt = dt.predict(X_test)
+accuracy_dt, precision_dt, recall_dt = display_results("Decision Tree", Y_pred_dt)
+
+# Logistic Regression
+lr = LogisticRegression()
+lr.fit(X_train, Y_train)
+Y_pred_lr = lr.predict(X_test)
+accuracy_lr, precision_lr, recall_lr = display_results("Logistic Regression", Y_pred_lr)
