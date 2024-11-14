@@ -18,7 +18,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 
-
 warnings.filterwarnings('ignore')
 
 def display_results(model_name, y_prediction):
@@ -41,13 +40,6 @@ def display_results(model_name, y_prediction):
     ----
     """)
     return accuracy, precision, recall
-
-st.set_page_config(
-    page_title="Performance Analyzer",
-    page_icon=":bar_chart:",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 st.markdown(
     """
@@ -102,14 +94,6 @@ with col2:
     sns.countplot(x=dataset["cardio"], data=dataset, ax=ax)
     st.pyplot(fig)
 
-# # # Bar plots for categorical features - need to figure out here.
-# # st.subheader("Categorical Features vs cardio")
-# # categorical_features = ["sex", "cp", "fbs", "restecg", "exang", "slope", "ca", "thal"]
-# # for feature in categorical_features:
-# #     fig, ax = plt.subplots()
-# #     sns.barplot(x=feature, y=dataset["cardio"], data=dataset, ax=ax)
-# #     st.pyplot(fig)
-
 # Split dataset
 predictors = dataset.drop("cardio", axis=1)
 target = dataset["cardio"]
@@ -161,3 +145,11 @@ lr = LogisticRegression()
 lr.fit(X_train, Y_train)
 Y_pred_lr = lr.predict(X_test)
 accuracy_lr, precision_lr, recall_lr = display_results("Logistic Regression", Y_pred_lr)
+
+# # Bar plots for categorical features - need to figure out here.
+# st.subheader("Categorical Features vs cardio")
+# categorical_features = ["sex", "cp", "fbs", "restecg", "exang", "slope", "ca", "thal"]
+# for feature in categorical_features:
+#     fig, ax = plt.subplots()
+#     sns.barplot(x=feature, y=dataset["cardio"], data=dataset, ax=ax)
+#     st.pyplot(fig)
