@@ -74,8 +74,8 @@ The F1-Score provides a way to measure a model's accuracy by considering both fa
 
 - Formula for F1-Score
 
-  - The formula to calculate the F1-Score is:
-    $$\text{F1 Score}=\text{2}×\frac{\text{Precision}×\text{Recall}}{\text{{Precision}}+\text{Recall}}$$
+  - The formula to calculate the F1-Score is: <br />
+    $$\text{F1 Score}=\text{2}×\frac{\text{Precision} × \text{Recall}}{\text{{Precision}} + \text{Recall}}$$
   - Where:
     - Precision is the proportion of true positive predictions out of all positive predictions.
     - Recall (Sensitivity) is the proportion of true positive predictions out of all actual positive cases.
