@@ -31,7 +31,7 @@ pip install -r requirements.txt
 - In order to run the web app,
 
 ```bash
-streamlit run app/main.py
+streamlit run app/navigation.py
 ```
 
 - It might automatically open the web app directly on to your default browser or open the `localhost` by typing as `localhost:8501`
