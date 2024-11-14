@@ -12,7 +12,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, r
 from sklearn.naive_bayes import GaussianNB
 from sklearn import svm
 from sklearn.neighbors import KNeighborsClassifier
-# from sklearn.neural_network import MLPClassifier
+from sklearn.neural_network import MLPClassifier
 # from sklearn.ensemble import RandomForestClassifier
 # from sklearn.tree import DecisionTreeClassifier
 # from sklearn.ensemble import GradientBoostingClassifier
@@ -142,3 +142,8 @@ accuracy_knn, precision_knn, recall_knn = display_results("K-Nearest Neighbors",
 # Y_prediction_svm = svm_model.predict(X_test)
 # accuracy_svm, precision_svm, recall_svm = display_results("Support Vector Machine", Y_prediction_svm)
 # ------------------------------------------------------------------
+
+mlp = MLPClassifier(hidden_layer_sizes=(100,), max_iter=1000)
+mlp.fit(X_train, Y_train)
+Y_pred_mlp = mlp.predict(X_test)
+accuracy_mlp, precision_mlp, recall_mlp = display_results("Multilayer Perceptron", Y_pred_mlp)
