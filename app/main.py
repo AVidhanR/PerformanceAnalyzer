@@ -95,7 +95,7 @@ with col2:
 
     st.write("Dataset attributes with it's data type and memory usages:")
     st.text(s)
-       
+
     # Target distribution
     st.subheader("Target Distribution")
     fig, ax = plt.subplots()
