@@ -212,10 +212,7 @@ data = {
 
 df = pd.DataFrame(data)
 df.set_index("Algorithm", inplace=True)
-
-col1, col2, col3 = st.columns([.5, 7.5, .5], vertical_alignment="center")
-with col2:
-    st.write(df)
+st.write(df)
 st.divider()
 
 st.subheader("Comparison of all Metrics")
