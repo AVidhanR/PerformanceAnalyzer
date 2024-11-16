@@ -2,7 +2,7 @@ import csv
 
 # Specify your input and output file names
 input_file = './dataset/cardio_train.csv'  # Input file with semicolon delimiters
-output_file = './dataset/output.csv'  # Output file with comma delimiters
+output_file = './dataset/cardiovascular_clean_dataset.csv'  # Output file with comma delimiters
 
 # Open the input file for reading
 with open(input_file, mode='r', newline='') as infile:
