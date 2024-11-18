@@ -1,6 +1,6 @@
 ### Performance Analysis For Heart Disease Prediction
 
-- Get a hold of the packages and libraries that are needed for the project from [here](PACKAGES.info.md)
+- Get a hold of the packages and libraries that are needed for the project from [here](PACKAGES.md)
 - This project compares 7 supervised machine learning algorithms (classification algorithms) for the heart disease dataset and gives the best performed classification algorithm for heart disease prediction.
 - The type of heart disease we see here is known as `Cardeovascular disease (CVD)`
 - The flow of the project is given below
@@ -13,7 +13,8 @@
 - **The number of deaths due to heart attacks is increasing exponentially.** Thus, **machine learning approaches can be used in the early prediction of heart disease.**
 - Different _supervised machine-learning techniques_ like `K-Nearest Neighbors`, `Naive Bayes`, `Support Vector Machines`, `Neural Networks`, `Random Forest Classifier`, `Decision Tree Classifier` and the `Gradient Boosting Classifier` are used for predicting heart disease using a dataset that was collected from the **`University of California, Irvine (UCI) Machine Repository`**
 - Among all other supervised classifiers, the results depict that the `Gradient Boosting Classifier` was better in terms of performance metrics like accuracy, precision, and sensitivity.
-  > [!IMPORTANT] > **Keywords:** Heart disease, Machine learning, University of California, Irvine (UCI) Machine Repository, K-Nearest neighbors, Naive Bayes, support vector machines, neural networks, Random Forest Classifier, Decision Tree Classifier, Gradient Boosting Classifier.
+  > [!IMPORTANT] 
+  > **Keywords:** Heart disease, Machine learning, University of California, Irvine (UCI) Machine Repository, K-Nearest neighbors, Naive Bayes, support vector machines, neural networks, Random Forest Classifier, Decision Tree Classifier, Gradient Boosting Classifier.
 
 ---
 
