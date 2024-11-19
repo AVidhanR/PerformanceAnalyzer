@@ -20,7 +20,7 @@
 
 ### To run this project locally
 
-- Make sure to have a `python interpreter` with version **`3.12`**
+- Make sure to have a `python interpreter` with version **`~=3.11`**
 - After `cloning the repo` by git\/github desktop open the respective `IDE` (VS-Code or PyCharm)
 
 ```bash
