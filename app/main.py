@@ -104,7 +104,7 @@ predictors = dataset.drop("target", axis=1)
 target = dataset["target"]
 X_train, X_test, Y_train, Y_test = train_test_split(predictors, target, test_size=0.20, random_state=0)
 
-st.markdown("""<hr style="margin: 0rem;" />""", unsafe_allow_html=True)
+st.divider()
 
 # Define function to display results
 def display_results(model_name, y_prediction):
@@ -122,8 +122,7 @@ def display_results(model_name, y_prediction):
     st.write(f"The accuracy score achieved using {model_name} is: {accuracy} %")
     st.write(f"The precision score achieved using {model_name} is: {precision} %")
     st.write(f"The recall score achieved using {model_name} is: {recall} %")
-    st.write(" ")
-    st.markdown("""<hr style="margin: 0rem;" />""", unsafe_allow_html=True)
+    st.divider()
 
     return accuracy, precision, recall
 
