@@ -40,5 +40,4 @@ streamlit run app/navigation.py
 ---
 
 - Gain knowledge on basic ML:
-
-* [Supervised Learning](https://developers.google.com/machine-learning/intro-to-ml/what-is-ml#supervised_learning)
+  * [Supervised Learning](https://developers.google.com/machine-learning/intro-to-ml/what-is-ml#supervised_learning)
