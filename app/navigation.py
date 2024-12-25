@@ -8,7 +8,7 @@ st.navigation({
         st.Page("pages/main.py", title="Performance Analyzer"),
     ],
     "Resources": [
-        st.Page("pages/about.py", title="Learn About us"),
+        st.Page("pages/about.py", title="About"),
         st.Page("pages/contact.py", title="GitHub Repo"),
     ],
 }).run()
