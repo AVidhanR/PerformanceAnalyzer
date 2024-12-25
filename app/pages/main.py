@@ -20,6 +20,7 @@ from sklearn.linear_model import LogisticRegression
 
 # for required data and content for the models
 from content_switcher import content_switcher
+from pages.footer import footer
 
 warnings.filterwarnings('ignore')
 
@@ -62,6 +63,7 @@ if uploaded_file is not None:
     dataset = pd.read_csv(uploaded_file)
 else:
     st.error("Please upload a CSV file.")
+    footer()
     st.stop()
 
 # display basic information about the dataset
@@ -242,3 +244,5 @@ st.divider()
 
 st.subheader("Comparison of all Performance Metrics in a single chart")
 st.bar_chart(df)
+
+footer()

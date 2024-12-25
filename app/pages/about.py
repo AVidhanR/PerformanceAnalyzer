@@ -1,4 +1,5 @@
 import streamlit as st # type: ignore
+from pages.footer import footer
 
 st.write("""
 ## Learn About Us
@@ -41,3 +42,4 @@ We are excited to connect with others in the tech community and collaborate on i
 """)
 
 # Add the remaining content here
+footer()
