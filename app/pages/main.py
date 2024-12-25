@@ -18,17 +18,22 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
 
+# for required data and content for the models
+from content_switcher import content_switcher
+
 warnings.filterwarnings('ignore')
 
 def display_results(model_name, y_prediction):
     st.subheader(model_name)
+    st.write(content_switcher[model_name])
+
     cm = confusion_matrix(Y_test, y_prediction)
     accuracy = round(accuracy_score(Y_test, y_prediction) * 100, 2)
     precision = round(precision_score(Y_test, y_prediction) * 100, 2)
     recall = round(recall_score(Y_test, y_prediction) * 100, 2)
     f1 = round(f1_score(Y_test, y_prediction, average='weighted') * 100, 2)
 
-    st.write("Confusion Matrix: ")
+    st.html("<b><i>Confusion Matrix: </i></b>")
     st.write(
         pd.DataFrame({
             "0": cm[:, 0],
@@ -87,6 +92,12 @@ with col2:
 
     # Target distribution
     st.subheader("Target Distribution")
+    st.html('''
+        <details>
+            <summary>About</summary>
+            The target variable 'cardio' is the presence or absence of heart disease. The value 1 represents the presence of heart disease and the value 0 represents the absence of heart disease.
+        </details>
+    ''')
     fig, ax = plt.subplots()
     sns.countplot(x=dataset["cardio"], data=dataset, ax=ax)
     st.pyplot(fig)
@@ -98,12 +109,15 @@ predictors = dataset.drop("cardio", axis=1)
 target = dataset["cardio"]
 X_train, X_test, Y_train, Y_test = train_test_split(predictors, target, test_size=0.20, random_state=0)
 
+# Model Building and Evaluation 
+st.write("## Model Building and Evaluation")
+
+# Naive Bayes
 nb = GaussianNB()
 nb.fit(X_train, Y_train)
 Y_prediction_nb = nb.predict(X_test)
 accuracy_nb, precision_nb, recall_nb, f1_nb = display_results("Naive Bayes", Y_prediction_nb)
 
-# K-Nearest Neighbors (KNN) Classifier with k=7 (default)
 knn = KNeighborsClassifier(n_neighbors=10)
 knn.fit(X_train, Y_train)
 Y_prediction_knn = knn.predict(X_test)
@@ -145,15 +159,25 @@ lr.fit(X_train, Y_train)
 Y_pred_lr = lr.predict(X_test)
 accuracy_lr, precision_lr, recall_lr, f1_lr = display_results("Logistic Regression", Y_pred_lr)
 
-# # Bar plots for categorical features - need to figure out here.
-# st.subheader("Categorical Features vs cardio")
-# categorical_features = ["sex", "cp", "fbs", "restecg", "exang", "slope", "ca", "thal"]
-# for feature in categorical_features:
-#     fig, ax = plt.subplots()
-#     sns.barplot(x=feature, y=dataset["cardio"], data=dataset, ax=ax)
-#     st.pyplot(fig)
+# Bar plots for categorical features
+st.subheader("Categorical Features vs cardio")
+st.html('''
+    <details>
+        <summary>About</summary>
+        Below are the bar plots showing the relationship between categorical features and the target variable 'cardio'. These plots help in understanding how different categorical features are distributed with respect to the presence or absence of heart disease.
+    </details>
+''')
+categorical_features = ["cholesterol", "gluc", "smoke", "alco", "active"]
+for feature in categorical_features:
+    fig, ax = plt.subplots()
+    sns.barplot(x=feature, y=dataset["cardio"], data=dataset, ax=ax)
+    st.pyplot(fig)
 
-st.write("## Model Comparison")
+st.write('''
+    ## Model Comparison
+    Below are the comparison of all the models based on the metrics such as Accuracy, Precision, Recall and F1-Score.
+''')
+
 
 algorithms = ["Naive Bayes", "K-Nearest Neighbors", "Support Vector Machines", "Multilayer Perceptron", "Gradient Boosting", "Random Forest", "Decision Tree", "Logistic Regression"]
 
@@ -212,8 +236,9 @@ data = {
 
 df = pd.DataFrame(data)
 df.set_index("Algorithm", inplace=True)
+st.subheader("Comparison of all Performance Metrics")
 st.write(df)
 st.divider()
 
-st.subheader("Comparison of all Metrics")
+st.subheader("Comparison of all Performance Metrics in a single chart")
 st.bar_chart(df)
