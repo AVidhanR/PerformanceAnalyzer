@@ -1,3 +1,24 @@
+## How to run the Streamlit app
+
+- Open the integrated terminal and run the following command to install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+- The `requirements.txt` file contains the list of packages used in this project.
+- After installing the required packages, run the following command to start the Streamlit app:
+
+```bash
+streamlit run app/navigation.py
+```
+
+- The Streamlit app will open in the default web browser.
+- The app contains the following pages:
+  - Performance Analyzer
+  - About Us
+  - Contact Us
+
 ## Packages used in this project
 
 ### `streamlit`

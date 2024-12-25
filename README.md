@@ -18,7 +18,7 @@
 
 ### To run this project locally
 
-- Make sure to have a `python interpreter` with version **`3.12`**
+- Make sure to have a `python interpreter` with version **`~=3.11`**
 - After `cloning the repo` by git\/github desktop open the respective `IDE` (VS-Code or PyCharm)
 
 ```bash
@@ -29,9 +29,14 @@ pip install -r requirements.txt
 - In order to run the web app,
 
 ```bash
-streamlit run app/main.py
+streamlit run app/navigation.py
 ```
 
 - It might automatically open the web app directly on to your default browser or open the `localhost` by typing as `localhost:8501`
 - In order to get the analysis part, upload the `University of California, Irvine (UCI) Machine Repository - heart disease` dataset by downloading it.
 - Change: using the latest dataset from here https://www.kaggle.com/datasets/sulianova/cardiovascular-disease-dataset
+
+---
+
+- Gain knowledge on basic ML:
+  * [Supervised Learning](https://developers.google.com/machine-learning/intro-to-ml/what-is-ml#supervised_learning)
