@@ -276,7 +276,7 @@ try:
         metrics_df["Average"] = metrics_df[["Accuracy", "Precision", "Recall", "F1-Score"]].mean(axis=1)
         best_model = metrics_df.loc[metrics_df["Average"].idxmax()]
 
-        st.subheader("Best Performing Model")
+        st.subheader("Best Performing Model for Heart Disease Prediction using this dataset")
         st.write(f"**Algorithm:** {best_model['Algorithm']}")
         st.write(f"**Average Score:** {best_model['Average']:.2f}")
         st.write("**Metrics:**")
