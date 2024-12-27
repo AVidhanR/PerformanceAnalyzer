@@ -92,6 +92,10 @@ try:
     if uploaded_file is not None:
         uploaded_dataset = pd.read_csv(uploaded_file)
         dataset = uploaded_dataset.dropna().reset_index(drop=True)
+        if ("gender") in uploaded_dataset.columns:
+            dataset['gender'] = dataset['gender'].replace({'male': 1, 'female': 0})
+        elif "sex" in uploaded_dataset.columns:
+            dataset['sex'] = dataset['sex'].replace({'male': 1, 'female': 0})
         st.sidebar.success("Dataset uploaded successfully.")
     else:
         st.error("Please upload a CSV file.")
@@ -127,18 +131,18 @@ try:
     # Split dataset
     predictors = dataset.drop(dataset_target_var, axis=1)
     target = dataset[dataset_target_var]
-    X_train, X_test, Y_train, Y_test = train_test_split(predictors, target, test_size=0.20, random_state=0)
+    X_train, X_test, Y_train, Y_test = train_test_split(predictors, target, test_size=0.25, random_state=0)
 
     # Model Building and Evaluation 
     st.write("## Model Building and Evaluation")
-
+    
     # Naive Bayes
     nb = GaussianNB()
     nb.fit(X_train, Y_train)
     Y_prediction_nb = nb.predict(X_test)
     accuracy_nb, precision_nb, recall_nb, f1_nb = display_model_results("Naive Bayes", Y_prediction_nb)
 
-    knn = KNeighborsClassifier(n_neighbors=10)
+    knn = KNeighborsClassifier(n_neighbors=7)
     knn.fit(X_train, Y_train)
     Y_prediction_knn = knn.predict(X_test)
     accuracy_knn, precision_knn, recall_knn, f1_knn = display_model_results("K-Nearest Neighbors", Y_prediction_knn)
@@ -162,7 +166,7 @@ try:
     accuracy_gb, precision_gb, recall_gb, f1_gb = display_model_results("Gradient Boosting", Y_pred_gb)
 
     # Random Forest - n_estimators = 600 and random_state = 42 - default_since
-    rf = RandomForestClassifier(n_estimators=600, random_state=42)
+    rf = RandomForestClassifier(n_estimators=700, random_state=42)
     rf.fit(X_train, Y_train)
     Y_pred_rf = rf.predict(X_test)
     accuracy_rf, precision_rf, recall_rf, f1_rf = display_model_results("Random Forest", Y_pred_rf)
