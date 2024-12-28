@@ -9,6 +9,6 @@ st.navigation({
     ],
     "Resources": [
         st.Page("pages/about.py", title="About"),
-        st.Page("pages/contact.py", title="GitHub Repo"),
+        st.Page("pages/contact.py", title="Codebase"),
     ],
 }).run()
