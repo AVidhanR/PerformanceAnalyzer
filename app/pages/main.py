@@ -90,7 +90,11 @@ try:
     uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
     if uploaded_file is not None:
         uploaded_dataset = pd.read_csv(uploaded_file)
+
+        # drop rows with missing values
         dataset = uploaded_dataset.dropna().reset_index(drop=True)
+
+        # replace
         if ("gender") in uploaded_dataset.columns:
             dataset['gender'] = dataset['gender'].replace({'male': 1, 'female': 0})
         elif "sex" in uploaded_dataset.columns:
@@ -118,7 +122,7 @@ try:
     st.html(f'''
         <details>
             <summary>About</summary>
-            The target variable {dataset_target_var} is the presence or absence of heart disease. The value 1 represents the presence of heart disease and the value 0 represents the absence of heart disease.
+            The target variable '{dataset_target_var}' is the presence or absence of heart disease. The value 1 represents the presence of heart disease and the value 0 represents the absence of heart disease.
         </details>
     ''')
     fig, ax = plt.subplots()
@@ -183,14 +187,13 @@ try:
     accuracy_lr, precision_lr, recall_lr, f1_lr = display_model_results("Logistic Regression", Y_pred_lr)
 
     # Bar plots for categorical features
-    st.subheader(f"Categorical Features vs {dataset_target_var}")
-    st.html(f'''
-        <details>
-            <summary>About</summary>
-            Below are the bar plots showing the relationship between categorical features and the target variable '{dataset_target_var}'. These plots help in understanding how different categorical features are distributed with respect to the presence or absence of heart disease.
-        </details>
-    ''')
-
+    # st.subheader(f"Categorical Features vs {dataset_target_var}")
+    # st.html(f'''
+    #     <details>
+    #         <summary>About</summary>
+    #         Below are the bar plots showing the relationship between categorical features and the target variable '{dataset_target_var}'. These plots help in understanding how different categorical features are distributed with respect to the presence or absence of heart disease.
+    #     </details>
+    # ''')
     # categorical_features = dataset.columns[:-1].tolist()
     # for feature in categorical_features:
     #     fig, ax = plt.subplots()
