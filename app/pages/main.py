@@ -99,6 +99,9 @@ try:
             dataset['gender'] = dataset['gender'].replace({'male': 1, 'female': 0})
         elif "sex" in uploaded_dataset.columns:
             dataset['sex'] = dataset['sex'].replace({'male': 1, 'female': 0})
+
+        # change the column names to lowercase
+        dataset.columns = dataset.columns.str.lower()
         st.sidebar.success("Dataset uploaded successfully.")
     else:
         st.error("Please upload a CSV file.")
