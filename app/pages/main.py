@@ -81,10 +81,9 @@ try:
         st.divider()
         return accuracy, precision, recall, f1
 
-    title_of_the_project = "performance analysis for heart disease prediction"
+    title_of_the_project = "performance analysis of different classification algorithms for heart disease prediction"
 
     st.title(title_of_the_project.title())
-    st.sidebar.title(title_of_the_project.title())
     st.sidebar.subheader("Settings")
 
     # upload the dataset
