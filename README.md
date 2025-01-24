@@ -2,7 +2,7 @@
 
 - Get a hold of the packages and libraries that are needed for the project from [here](PACKAGES.md)
 - This project compares 7 supervised machine learning algorithms (classification algorithms) for the heart disease dataset and gives the best performed classification algorithm for heart disease prediction.
-- The type of heart disease we see here is known as `Cardeovascular disease (CVD)`
+- The type of heart disease we see here is known as `Cardiovascular disease (CVD)`
 - The flow of the project is given below
 > coming soon
 
