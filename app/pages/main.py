@@ -271,7 +271,7 @@ try:
     st.divider()
 
     st.subheader("Comparison of all Performance Metrics in a single chart")
-    st.bar_chart(df)
+    st.bar_chart(df, stack=False)
 
     def display_best_model(algorithms, accuracy, precision, recall, f1):
 
