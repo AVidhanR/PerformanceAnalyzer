@@ -132,7 +132,7 @@ Y_prediction_svm = svm_model.predict(X_test)
 accuracy_svm, precision_svm, recall_svm, f1_svm = display_results("Support Vector Machines", Y_prediction_svm)
 
 # Neural Networks - MLP
-mlp = MLPClassifier(hidden_layer_sizes=(100,), max_iter=1000)
+mlp = MLPClassifier(hidden_layer_sizes=(90,), max_iter=1000)
 mlp.fit(X_train, Y_train)
 Y_pred_mlp = mlp.predict(X_test)
 accuracy_mlp, precision_mlp, recall_mlp, f1_mlp = display_results("Multilayer Perceptron", Y_pred_mlp)
@@ -156,10 +156,10 @@ Y_pred_dt = dt.predict(X_test)
 accuracy_dt, precision_dt, recall_dt, f1_dt = display_results("Decision Tree", Y_pred_dt)
 
 # Logistic Regression
-lr = LogisticRegression()
-lr.fit(X_train, Y_train)
-Y_pred_lr = lr.predict(X_test)
-accuracy_lr, precision_lr, recall_lr, f1_lr = display_results("Logistic Regression", Y_pred_lr)
+# lr = LogisticRegression()
+# lr.fit(X_train, Y_train)
+# Y_pred_lr = lr.predict(X_test)
+# accuracy_lr, precision_lr, recall_lr, f1_lr = display_results("Logistic Regression", Y_pred_lr)
 
 # Bar plots for categorical features
 st.subheader("Categorical Features vs cardio")
@@ -181,15 +181,15 @@ st.write('''
 ''')
 
 
-algorithms = ["Naive Bayes", "K-Nearest Neighbors", "Support Vector Machines", "Multilayer Perceptron", "Gradient Boosting", "Random Forest", "Decision Tree", "Logistic Regression"]
+algorithms = ["Naive Bayes", "K-Nearest Neighbors", "Support Vector Machines", "Multilayer Perceptron", "Gradient Boosting", "Random Forest", "Decision Tree"]
 
-accuracy_scores = [accuracy_nb, accuracy_knn, accuracy_svm, accuracy_mlp, accuracy_gb, accuracy_rf, accuracy_dt, accuracy_lr]
+accuracy_scores = [accuracy_nb, accuracy_knn, accuracy_svm, accuracy_mlp, accuracy_gb, accuracy_rf, accuracy_dt]
 
-precision_scores = [precision_nb, precision_knn, precision_svm, precision_mlp, precision_gb, precision_rf, precision_dt, precision_lr]
+precision_scores = [precision_nb, precision_knn, precision_svm, precision_mlp, precision_gb, precision_rf, precision_dt]
 
-recall_scores = [recall_nb, recall_knn, recall_svm, recall_mlp, recall_gb, recall_rf, recall_dt, recall_lr]
+recall_scores = [recall_nb, recall_knn, recall_svm, recall_mlp, recall_gb, recall_rf, recall_dt]
 
-f1_scores = [f1_nb, f1_knn, f1_svm, f1_mlp, f1_gb, f1_rf, f1_dt, f1_lr]
+f1_scores = [f1_nb, f1_knn, f1_svm, f1_mlp, f1_gb, f1_rf, f1_dt]
 
 # Plot Accuracy
 st.subheader("Accuracy Score Comparison")
@@ -243,6 +243,6 @@ st.write(df)
 st.divider()
 
 st.subheader("Comparison of all Performance Metrics in a single chart")
-st.bar_chart(df)
+st.bar_chart(df, stack=False)
 
 footer()
