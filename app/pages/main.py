@@ -104,7 +104,7 @@ try:
         dataset.columns = dataset.columns.str.lower()
         st.sidebar.success("Dataset uploaded successfully.")
     else:
-        st.error("Please upload a CSV file.")
+        st.error("Please upload a Heart Disease dataset CSV file.")
         footer()
         st.stop()
 
