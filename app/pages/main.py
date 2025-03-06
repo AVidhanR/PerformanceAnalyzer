@@ -163,7 +163,7 @@ try:
     # Model Building and Evaluation 
     st.write("## Model Building and Evaluation")
     
-    # Naive Bayes
+    # Gaussian Naive Bayes
     nb = GaussianNB()
     nb.fit(X_train, Y_train)
     Y_prediction_nb = nb.predict(X_test)
