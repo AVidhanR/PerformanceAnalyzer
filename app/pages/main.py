@@ -32,7 +32,7 @@ try:
 
         st.sidebar.write("Dataset description:")
         st.sidebar.write(dataset.describe())
-        
+
         buffer = io.StringIO()
         dataset.info(buf=buffer)
         s = buffer.getvalue()
@@ -84,7 +84,9 @@ try:
 
     title_of_the_project = "performance analysis of different classification algorithms for heart disease prediction"
 
-    st.title(title_of_the_project.title())
+    st.header(title_of_the_project.title())
+    
+    st.write(f"Let's perform the {title_of_the_project} in order to prove that Gradient Bossting Classifier does the best performance among all the models.")
 
     st.sidebar.subheader("Settings")
 
