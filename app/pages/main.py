@@ -29,25 +29,25 @@ try:
         # with col2: tbh, no need this shit
         st.subheader("Dataset Information")
 
-        st.write("Dataset head:")
-        st.write(dataset.head())
-        st.divider()
+        st.sidebar.write("Dataset head:")
+        st.sidebar.write(dataset.head())
+        # st.divider()
 
-        st.write("Dataset description:")
-        st.write(dataset.describe())
-        st.divider()
+        st.sidebar.write("Dataset description:")
+        st.sidebar.write(dataset.describe())
+        # st.divider()
 
-        st.write("The complete data provided by the dataset:")
-        st.write(dataset)
-        st.divider()
+        st.sidebar.write("The complete data provided by the dataset:")
+        st.sidebar.write(dataset)
+        # st.divider()
 
         # Display dataset info
         buffer = io.StringIO()
         dataset.info(buf=buffer)
         s = buffer.getvalue()
-        st.write("### Dataset attributes with it's data type and memory usages:")
-        st.html(f'<pre class="dataset-attr">{s}</pre>')
-        st.divider()
+        st.sidebar.write("### Dataset attributes with it's data type and memory usages:")
+        st.sidebar.html(f'<pre class="dataset-attr">{s}</pre>')
+        # st.divider()
 
     def display_model_results(model_name, y_prediction)->list:
         st.subheader(model_name)
@@ -84,7 +84,6 @@ try:
             </ul>
         """)
 
-        # st.metric() API
         col1, col2, col3, col4 = st.columns(4)
         col1.metric("Accuracy", f"{accuracy}%")
         col2.metric("Precision", f"{precision}%")
@@ -276,10 +275,14 @@ try:
         best_model = metrics_df.loc[metrics_df["Average"].idxmax()]
 
         st.subheader("Best Performing Model for Heart Disease Prediction")
-        st.write(f"**Algorithm:** {best_model['Algorithm']}")
-        st.write(f"**Average Score:** {best_model['Average']:.2f}")
-        st.write("**Metrics:**")
-        st.write(best_model[["Accuracy", "Precision", "Recall", "F1-Score"]])
+        st.write(f"#### **Algorithm:** {best_model['Algorithm']}")
+        st.write(f"#### **Average Score:** {best_model['Average']:.2f}")
+        
+        col1, col2, col3, col4 = st.columns(4)
+        col1.metric("Accuracy", f"{best_model["Accuracy"]}%")
+        col2.metric("Precision", f"{best_model["Precision"]}%")
+        col3.metric("Recall", f"{best_model["Recall"]}%")
+        col4.metric("F1-Score", f"{best_model["F1-Score"]}%")
 
     display_best_model(algorithms, accuracy_scores, precision_scores, recall_scores, f1_scores)
 
