@@ -16,13 +16,10 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.linear_model import LogisticRegression
 
 # for required data and content for the models
 from content_switcher import content_switcher
 from pages.footer import footer
-import pandas as pd
-import streamlit as st
 
 warnings.filterwarnings('ignore')
 
@@ -64,13 +61,36 @@ try:
         recall = round(recall_score(Y_test, y_prediction) * 100, 2)
         f1 = round(f1_score(Y_test, y_prediction, average='weighted') * 100, 2)
 
-        st.html("<b><i>Confusion Matrix: </i></b>")
-        st.write(
-            pd.DataFrame({
-                "0": cm[:, 0],
-                "1": cm[:, 1]
-            })
-        )
+        # st.html("<b><i>Confusion Matrix: </i></b>")
+        # st.write(
+        #     pd.DataFrame({
+        #         "0": cm[:, 0],
+        #         "1": cm[:, 1]
+        #     })
+        # )
+
+        TN = cm[0, 0]  # True Negatives
+        FP = cm[0, 1]  # False Positives
+        FN = cm[1, 0]  # False Negatives
+        TP = cm[1, 1]  # True Positives
+
+        fig, ax = plt.subplots(figsize=(8, 6))
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
+                    xticklabels=['Negative', 'Positive'],
+                    yticklabels=['Negative', 'Positive'])
+        plt.title('Confusion Matrix')
+        plt.ylabel('True Label')
+        plt.xlabel('Predicted Label')
+        st.pyplot(fig)
+
+        st.html(f"""
+            <ul>
+                <li>True Negatives: {TN}</li>
+                <li>False Positives: {FP}</li>
+                <li>False Negatives: {FN}</li>
+                <li>True Positives: {TP}</li>
+            </ul>
+        """)
 
         # st.metric() API
         col1, col2, col3, col4 = st.columns(4)
@@ -84,6 +104,7 @@ try:
     title_of_the_project = "performance analysis of different classification algorithms for heart disease prediction"
 
     st.title(title_of_the_project.title())
+
     st.sidebar.subheader("Settings")
 
     # upload the dataset
@@ -111,8 +132,8 @@ try:
     # display basic information about the dataset
     display_dataset_info(dataset)
 
-    target_input = st.text_input(label="Enter the valid target variable",placeholder="Enter the valid target variable name", max_chars=20, label_visibility="visible")
-    dataset_target_var = target_input.lower()
+    # target_input = st.text_input(label="Enter the valid target variable",placeholder="Enter the valid target variable name", max_chars=20, label_visibility="visible")
+    dataset_target_var = "cardio"
 
     if dataset_target_var not in dataset.columns:
         st.error("Please enter a valid target variable name that is available in the dataset.")
@@ -184,10 +205,10 @@ try:
     accuracy_dt, precision_dt, recall_dt, f1_dt = display_model_results("Decision Tree", Y_pred_dt)
 
     # Logistic Regression
-    lr = LogisticRegression()
-    lr.fit(X_train, Y_train)
-    Y_pred_lr = lr.predict(X_test)
-    accuracy_lr, precision_lr, recall_lr, f1_lr = display_model_results("Logistic Regression", Y_pred_lr)
+    # lr = LogisticRegression()
+    # lr.fit(X_train, Y_train)
+    # Y_pred_lr = lr.predict(X_test)
+    # accuracy_lr, precision_lr, recall_lr, f1_lr = display_model_results("Logistic Regression", Y_pred_lr)
 
     # Bar plots for categorical features
     # st.subheader(f"Categorical Features vs {dataset_target_var}")
@@ -209,15 +230,15 @@ try:
     ''')
 
 
-    algorithms = ["Naive Bayes", "K-Nearest Neighbors", "Support Vector Machines", "Multilayer Perceptron", "Gradient Boosting", "Random Forest", "Decision Tree", "Logistic Regression"]
+    algorithms = ["Naive Bayes", "K-Nearest Neighbors", "Support Vector Machines", "Multilayer Perceptron", "Gradient Boosting", "Random Forest", "Decision Tree"]
 
-    accuracy_scores = [accuracy_nb, accuracy_knn, accuracy_svm, accuracy_mlp, accuracy_gb, accuracy_rf, accuracy_dt, accuracy_lr]
+    accuracy_scores = [accuracy_nb, accuracy_knn, accuracy_svm, accuracy_mlp, accuracy_gb, accuracy_rf, accuracy_dt]
 
-    precision_scores = [precision_nb, precision_knn, precision_svm, precision_mlp, precision_gb, precision_rf, precision_dt, precision_lr]
+    precision_scores = [precision_nb, precision_knn, precision_svm, precision_mlp, precision_gb, precision_rf, precision_dt]
 
-    recall_scores = [recall_nb, recall_knn, recall_svm, recall_mlp, recall_gb, recall_rf, recall_dt, recall_lr]
+    recall_scores = [recall_nb, recall_knn, recall_svm, recall_mlp, recall_gb, recall_rf, recall_dt]
 
-    f1_scores = [f1_nb, f1_knn, f1_svm, f1_mlp, f1_gb, f1_rf, f1_dt, f1_lr]
+    f1_scores = [f1_nb, f1_knn, f1_svm, f1_mlp, f1_gb, f1_rf, f1_dt]
 
     # Plot Accuracy
     st.subheader("Accuracy Score Comparison")
