@@ -61,14 +61,6 @@ try:
         recall = round(recall_score(Y_test, y_prediction) * 100, 2)
         f1 = round(f1_score(Y_test, y_prediction, average='weighted') * 100, 2)
 
-        # st.html("<b><i>Confusion Matrix: </i></b>")
-        # st.write(
-        #     pd.DataFrame({
-        #         "0": cm[:, 0],
-        #         "1": cm[:, 1]
-        #     })
-        # )
-
         TN = cm[0, 0]  # True Negatives
         FP = cm[0, 1]  # False Positives
         FN = cm[1, 0]  # False Negatives
@@ -132,9 +124,7 @@ try:
     # display basic information about the dataset
     display_dataset_info(dataset)
 
-    # target_input = st.text_input(label="Enter the valid target variable",placeholder="Enter the valid target variable name", max_chars=20, label_visibility="visible")
     dataset_target_var = "cardio"
-
     if dataset_target_var not in dataset.columns:
         st.error("Please enter a valid target variable name that is available in the dataset.")
         st.stop()
