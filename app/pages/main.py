@@ -249,7 +249,7 @@ try:
     st.bar_chart(df, stack=False)
 
     # Classification Report for Gradient Boosting Model    
-    st.subheader("Gradient Boosting Model")
+    # st.subheader("Gradient Boosting Model")
     report = classification_report(Y_test, Y_pred_gb)
     print(report)
 
