@@ -204,31 +204,10 @@ try:
     Y_pred_dt = dt.predict(X_test)
     accuracy_dt, precision_dt, recall_dt, f1_dt = display_model_results("Decision Tree", Y_pred_dt)
 
-    # Logistic Regression
-    # lr = LogisticRegression()
-    # lr.fit(X_train, Y_train)
-    # Y_pred_lr = lr.predict(X_test)
-    # accuracy_lr, precision_lr, recall_lr, f1_lr = display_model_results("Logistic Regression", Y_pred_lr)
-
-    # Bar plots for categorical features
-    # st.subheader(f"Categorical Features vs {dataset_target_var}")
-    # st.html(f'''
-    #     <details>
-    #         <summary>About</summary>
-    #         Below are the bar plots showing the relationship between categorical features and the target variable '{dataset_target_var}'. These plots help in understanding how different categorical features are distributed with respect to the presence or absence of heart disease.
-    #     </details>
-    # ''')
-    # categorical_features = dataset.columns[:-1].tolist()
-    # for feature in categorical_features:
-    #     fig, ax = plt.subplots()
-    #     sns.barplot(x=feature, y=dataset[dataset_target_var], data=dataset, ax=ax)
-    #     st.pyplot(fig)
-
     st.write('''
         ## Model Comparison
         Below are the comparison of all the models based on the metrics such as Accuracy, Precision, Recall and F1-Score.
     ''')
-
 
     algorithms = ["Naive Bayes", "K-Nearest Neighbors", "Support Vector Machines", "Multilayer Perceptron", "Gradient Boosting", "Random Forest", "Decision Tree"]
 
