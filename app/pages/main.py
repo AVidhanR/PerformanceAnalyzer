@@ -17,6 +17,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 # from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
+
 
 # for required data and content for the models
 from content_switcher import content_switcher
@@ -245,6 +247,11 @@ try:
 
     st.subheader("Comparison of all Performance Metrics in a single chart")
     st.bar_chart(df, stack=False)
+
+    # Classification Report for Gradient Boosting Model    
+    st.subheader("Gradient Boosting Model")
+    report = classification_report(Y_test, Y_pred_gb)
+    print(report)
 
     footer()
 except Exception as e:
