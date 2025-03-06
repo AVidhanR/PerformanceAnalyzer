@@ -25,29 +25,19 @@ warnings.filterwarnings('ignore')
 
 try:
     def display_dataset_info(dataset):
-        # col1, col2, col3 = st.columns([.5, 9, .5], vertical_alignment="center")
-        # with col2: tbh, no need this shit
-        st.subheader("Dataset Information")
+        st.sidebar.subheader("Dataset Information")
 
         st.sidebar.write("Dataset head:")
         st.sidebar.write(dataset.head())
-        # st.divider()
 
         st.sidebar.write("Dataset description:")
         st.sidebar.write(dataset.describe())
-        # st.divider()
-
-        st.sidebar.write("The complete data provided by the dataset:")
-        st.sidebar.write(dataset)
-        # st.divider()
-
-        # Display dataset info
+        
         buffer = io.StringIO()
         dataset.info(buf=buffer)
         s = buffer.getvalue()
         st.sidebar.write("### Dataset attributes with it's data type and memory usages:")
         st.sidebar.html(f'<pre class="dataset-attr">{s}</pre>')
-        # st.divider()
 
     def display_model_results(model_name, y_prediction)->list:
         st.subheader(model_name)
@@ -275,8 +265,8 @@ try:
         best_model = metrics_df.loc[metrics_df["Average"].idxmax()]
 
         st.subheader("Best Performing Model for Heart Disease Prediction")
-        st.write(f"#### **Algorithm:** {best_model['Algorithm']}")
-        st.write(f"#### **Average Score:** {best_model['Average']:.2f}")
+        st.write(f"##### **Algorithm:** {best_model['Algorithm']}")
+        st.write(f"##### **Average Score:** {best_model['Average']:.2f}")
         
         col1, col2, col3, col4 = st.columns(4)
         col1.metric("Accuracy", f"{best_model["Accuracy"]}%")
