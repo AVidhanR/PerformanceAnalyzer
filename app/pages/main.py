@@ -25,7 +25,7 @@ warnings.filterwarnings('ignore')
 
 try:
     def display_dataset_info(dataset):
-        st.sidebar.subheader("Dataset Information")
+        st.sidebar.subheader("Uploaded dataset Information")
 
         st.sidebar.write("Dataset head:")
         st.sidebar.write(dataset.head())
