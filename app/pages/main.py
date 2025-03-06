@@ -74,7 +74,7 @@ try:
         FN = cm[1, 0]  # False Negatives
         TP = cm[1, 1]  # True Positives
 
-        fig, ax = plt.subplots(figsize=(8, 6))
+        fig, ax = plt.subplots(figsize=(6, 4))
         sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
                     xticklabels=['Negative', 'Positive'],
                     yticklabels=['Negative', 'Positive'])
