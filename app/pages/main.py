@@ -85,10 +85,10 @@ try:
 
         st.html(f"""
             <ul>
-                <li>True Positives: {TP}</li>
                 <li>True Negatives: {TN}</li>
                 <li>False Positives: {FP}</li>
                 <li>False Negatives: {FN}</li>
+                <li>True Positives: {TP}</li>
             </ul>
         """)
 
