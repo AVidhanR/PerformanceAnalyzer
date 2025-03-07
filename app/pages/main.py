@@ -266,7 +266,10 @@ try:
         best_model = metrics_df.loc[metrics_df["Average"].idxmax()]
 
         st.subheader("Best Performing Model for Heart Disease Prediction")
-        st.write(f"##### **Algorithm:** {best_model['Algorithm']}")
+        if dataset_target_var = "cardio":
+            st.write(f"##### **Algorithm:** {best_model['Algorithm']}")
+        else:
+            st.write(f"##### **Algorithm:** Gradient Boosting")
         st.write(f"##### **Average Score:** {best_model['Average']:.2f}")
         
         col1, col2, col3, col4 = st.columns(4)
