@@ -266,7 +266,7 @@ try:
         best_model = metrics_df.loc[metrics_df["Average"].idxmax()]
 
         st.subheader("Best Performing Model for Heart Disease Prediction")
-        if dataset_target_var = "cardio":
+        if dataset_target_var == "cardio":
             st.write(f"##### **Algorithm:** {best_model['Algorithm']}")
         else:
             st.write(f"##### **Algorithm:** Gradient Boosting")
