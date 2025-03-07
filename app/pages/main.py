@@ -117,8 +117,7 @@ try:
 
     dataset_target_var = "cardio"
     if dataset_target_var not in dataset.columns:
-        st.error("Please enter a valid target variable name that is available in the dataset.")
-        st.stop()
+        dataset_target_var = "target"
 
     st.divider()
 
