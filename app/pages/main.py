@@ -51,6 +51,13 @@ try:
         recall = round(recall_score(Y_test, y_prediction) * 100, 2)
         f1 = round(f1_score(Y_test, y_prediction, average='weighted') * 100, 2)
 
+        print(model_name)
+        print(round(accuracy_score(Y_test, y_prediction), 2))
+        print(round(precision_score(Y_test, y_prediction), 2))
+        print(round(recall_score(Y_test, y_prediction), 2))
+        print(round(f1_score(Y_test, y_prediction, average='weighted'), 2))
+        print()
+
         TN = cm[0, 0]  # True Negatives
         FP = cm[0, 1]  # False Positives
         FN = cm[1, 0]  # False Negatives
