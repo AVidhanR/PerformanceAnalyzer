@@ -16,6 +16,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.ensemble import HistGradientBoostingClassifier
 
 # for required data and content for the models
 from content_switcher import content_switcher
@@ -174,7 +175,12 @@ try:
     accuracy_mlp, precision_mlp, recall_mlp, f1_mlp = display_model_results("Multilayer Perceptron", Y_pred_mlp)
 
     # Gradient Boosting - the best for now
-    gb = GradientBoostingClassifier()
+    # gb = GradientBoostingClassifier()
+    # gb.fit(X_train, Y_train)
+    # Y_pred_gb = gb.predict(X_test)
+    # accuracy_gb, precision_gb, recall_gb, f1_gb = display_model_results("Gradient Boosting", Y_pred_gb)
+
+    gb = HistGradientBoostingClassifier()
     gb.fit(X_train, Y_train)
     Y_pred_gb = gb.predict(X_test)
     accuracy_gb, precision_gb, recall_gb, f1_gb = display_model_results("Gradient Boosting", Y_pred_gb)
