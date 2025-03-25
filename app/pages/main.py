@@ -21,8 +21,6 @@ from sklearn.linear_model import LogisticRegression
 # for required data and content for the models
 from content_switcher import content_switcher
 from pages.footer import footer
-import pandas as pd
-import streamlit as st
 
 warnings.filterwarnings('ignore')
 
