@@ -19,7 +19,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 
 # for required data and content for the models
 from content_switcher import content_switcher
-# from pages.footer import footer
+from pages.footer import footer
 
 warnings.filterwarnings('ignore')
 
@@ -116,7 +116,7 @@ try:
         st.sidebar.success("Dataset uploaded successfully.")
     else:
         st.error("Please upload a Heart Disease dataset CSV file.")
-        # footer()
+        footer()
         st.stop()
 
     # display basic information about the dataset
@@ -287,8 +287,8 @@ try:
 
     display_best_model(algorithms, accuracy_scores, precision_scores, recall_scores, f1_scores)
 
-    # footer()
+    footer()
 except Exception as e:
     st.error(f"An error occurred: {e}")
-    # footer()
+    footer()
     st.stop()
