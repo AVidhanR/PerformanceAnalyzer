@@ -43,4 +43,4 @@ streamlit run app/navigation.py
  - Firstly, the static type which works only on one dataset (linked above): [performance-analyzer-static](https://performance-analyzer-static.streamlit.app)
  - Secondly, the generic type which can intake any heart disease dataset: [performance-analyzer-generic](https://performance-analyzer-generic.streamlit.app)
 
-$$\text{Created and maintained by AVidhanR}$$
+- Created and maintained by [AVidhanR](https://linkedin.com/in/AVidhanR)
