@@ -38,3 +38,9 @@ streamlit run app/navigation.py
 
 - Gain knowledge on basic ML:
   * [Supervised Learning](https://developers.google.com/machine-learning/intro-to-ml/what-is-ml#supervised_learning)
+
+- There are two versions of this site:
+ - Firstly, the static type which works only on one dataset (linked above): [performance-analyzer-static](https://performance-analyzer-static.streamlit.app)
+ - Secondly, the generic type which can intake any heart disease dataset: [performance-analyzer-generic](https://performance-analyzer-generic.streamlit.app)
+
+$$\text{Created and maintained by AVidhanR}$$
